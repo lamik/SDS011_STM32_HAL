@@ -30,24 +30,24 @@ typedef enum
 {
 	SDS011_OK 		= 0,
 	SDS011_ERROR	= 1
-}SDS011_SATUS;
+}SDS011_STATUS;
 
 #ifdef SDS011_UART
-SDS011_SATUS Sds011_InitUart(UART_HandleTypeDef *huart);
+SDS011_STATUS Sds011_InitUart(UART_HandleTypeDef *huart);
 #endif
 
 #ifdef SDS011_PWM
-SDS011_SATUS Sds011_InitPwm(TIM_HandleTypeDef *htim, uint32_t PM2_5_TimerChannel, uint32_t PM10_TimerChannel);
+SDS011_STATUS Sds011_InitPwm(TIM_HandleTypeDef *htim, uint32_t PM2_5_TimerChannel, uint32_t PM10_TimerChannel);
 #endif
 
 #ifdef SDS011_UART
-SDS011_SATUS Sds011_SetWorkingPeriod(uint8_t Period);
-SDS011_SATUS Sds011_SetSleepMode(void);
-SDS011_SATUS Sds011_WakeUp(void);
+SDS011_STATUS Sds011_SetWorkingPeriod(uint8_t Period);
+SDS011_STATUS Sds011_SetSleepMode(void);
+SDS011_STATUS Sds011_WakeUp(void);
 #endif
 
-SDS011_SATUS Sds011_GetPm2_5(uint16_t *Value);
-SDS011_SATUS Sds011_GetPm10(uint16_t *Value);
+SDS011_STATUS Sds011_GetPm2_5(uint16_t *Value);
+SDS011_STATUS Sds011_GetPm10(uint16_t *Value);
 
 #ifdef SDS011_UART
 void Sds011_UartRxCpltCallback(UART_HandleTypeDef *huart);

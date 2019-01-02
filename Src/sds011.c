@@ -60,7 +60,7 @@ static const uint8_t Sds011_SleepCommand[] = {
 //
 //	Initialization with UART interace
 //
-SDS011_SATUS Sds011_InitUart(UART_HandleTypeDef *huart)
+SDS011_STATUS Sds011_InitUart(UART_HandleTypeDef *huart)
 {
 	huart_sds = huart;
 
@@ -76,7 +76,7 @@ SDS011_SATUS Sds011_InitUart(UART_HandleTypeDef *huart)
 //
 //	Initialization with PWM interace
 //
-SDS011_SATUS Sds011_InitPwm(TIM_HandleTypeDef *htim, uint32_t PM2_5_TimerChannel, uint32_t PM10_TimerChannel)
+SDS011_STATUS Sds011_InitPwm(TIM_HandleTypeDef *htim, uint32_t PM2_5_TimerChannel, uint32_t PM10_TimerChannel)
 {
 	htim_sds = htim;
 	Pm2_5_TimChannel_sds = PM2_5_TimerChannel;
@@ -92,7 +92,7 @@ SDS011_SATUS Sds011_InitPwm(TIM_HandleTypeDef *htim, uint32_t PM2_5_TimerChannel
 //
 //	Get the PM2.5 measured value
 //
-SDS011_SATUS Sds011_GetPm2_5(uint16_t *Value)
+SDS011_STATUS Sds011_GetPm2_5(uint16_t *Value)
 {
 	*Value = Pm2_5;
 	return SDS011_OK;
@@ -101,7 +101,7 @@ SDS011_SATUS Sds011_GetPm2_5(uint16_t *Value)
 //
 //	Get the PM10 measured value
 //
-SDS011_SATUS Sds011_GetPm10(uint16_t *Value)
+SDS011_STATUS Sds011_GetPm10(uint16_t *Value)
 {
 	*Value = Pm10;
 	return SDS011_OK;
@@ -114,7 +114,7 @@ SDS011_SATUS Sds011_GetPm10(uint16_t *Value)
 //	1 - The power saving cycles:
 //		30 seconds working, one time send measured value after that. Then sleep for 'Period' minutes.
 //
-SDS011_SATUS Sds011_SetWorkingPeriod(uint8_t Period)
+SDS011_STATUS Sds011_SetWorkingPeriod(uint8_t Period)
 {
 	if(Period > 30) Period = 30;
 
@@ -145,7 +145,7 @@ SDS011_SATUS Sds011_SetWorkingPeriod(uint8_t Period)
 //
 //	Put SDS011 into sleep mode
 //
-SDS011_SATUS Sds011_SetSleepMode(void)
+SDS011_STATUS Sds011_SetSleepMode(void)
 {
 	if(HAL_OK == HAL_UART_Transmit(huart_sds, (uint8_t*)Sds011_SleepCommand, 19, 20))
 		return SDS011_OK;
@@ -156,7 +156,7 @@ SDS011_SATUS Sds011_SetSleepMode(void)
 //
 //	Wake up SDS011
 //
-SDS011_SATUS Sds011_WakeUp(void)
+SDS011_STATUS Sds011_WakeUp(void)
 {
 	uint8_t cmd = 0x01;
 

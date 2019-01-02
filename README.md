@@ -1,4 +1,4 @@
-www.msalamon.pl
+https://msalamon.pl/pomiar-czystosci-powietrza-przy-pomocy-sds011/
 
 SDS011 air quality sensor.
 Project is basen on STM32L053R8 Nucleo.
